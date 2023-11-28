@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext'; // 确保正确导入 useAuth
 import './Navbar.css';
 
 const Navbar = () => {
-  const { isLoggedIn, logout } = useAuth(); // 使用 useAuth 钩子
+  const { isLoggedIn, logout, user } = useAuth(); // 获取 user 数据
 
   const handleLogout = () => {
     logout(); // 调用从 AuthContext 获取的 logout 函数
@@ -22,7 +22,8 @@ const Navbar = () => {
         </>
       ) : (
         <>
-          <Link to="/profile" className="nav-item">Profile</Link>
+          {/* 使用用户ID构建个人资料页面的链接 */}
+          <Link to={`/profile/${user?._id}`} className="nav-item">Profile</Link>
           <button onClick={handleLogout} className="nav-item">Logout</button>
         </>
       )}

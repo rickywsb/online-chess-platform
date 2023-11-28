@@ -10,6 +10,7 @@ export const fetchMyProfile = async (token) => {
 
 // 获取特定用户的个人资料
 export const fetchUserProfile = async (userId, token) => {
+  console.log('current token:', token); // 调试信息
   API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   return await API.get(`/api/profile/${userId}`);
 };

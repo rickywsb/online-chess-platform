@@ -1,8 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {enrollInCourse} from '../../api/course.js'; 
 import './CourseCard.css';
 
 const CourseCard = ({ course, onEdit, onDelete, userRole }) => {
+  const handleEnroll = async () => {
+    try {
+      await enrollInCourse(course._id);
+      alert('Enrolled successfully!'); // 可以替换为更复杂的通知系统
+    } catch (error) {
+      console.error('Failed to enroll:', error);
+      alert('Failed to enroll in course.'); // 同上
+    }
+  };
+
   return (
     <div className="course-card">
       <h3 className="course-title">{course.title}</h3>
@@ -16,7 +27,7 @@ const CourseCard = ({ course, onEdit, onDelete, userRole }) => {
             <Link to={`/courses/${course._id}/modules`} className="view-modules-button">
               View Modules
             </Link>
-            <button className="enroll-button">Enroll Now</button>
+            <button className="enroll-button" onClick={handleEnroll}>Enroll Now</button>
           </>
         )}
 

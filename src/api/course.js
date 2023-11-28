@@ -51,3 +51,17 @@ export const deleteCourse = async (courseId) => {
     throw error;
   }
 };
+
+export const enrollInCourse = async (courseId) => {
+  try {
+    const token = localStorage.getItem('token'); // 或者从其他地方获取令牌
+    const response = await axios.post(`/api/courses/${courseId}/enroll`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

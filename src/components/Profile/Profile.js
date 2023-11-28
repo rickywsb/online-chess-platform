@@ -54,13 +54,18 @@ const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
       <div>
         <h2>{profile.role === 'instructor' ? 'Teaching Courses' : 'Purchased Courses'}</h2>
         <ul>
-          {(profile.role === 'instructor' ? profile.teachingCourses : profile.purchasedCourses) && Array.isArray(profile.purchasedCourses) ? (
-            profile.purchasedCourses.map(course => (
-              <li key={course.id}>{course.title}</li>
-            ))
-          ) : (
-            <p>No courses.</p>
-          )}
+        {
+            Array.isArray(profile.courses) && profile.courses.length > 0 ? (
+              profile.courses.map(course => (
+                <li key={course._id}>{course.title}</li>
+              ))
+            ) : (
+              <p>No purchased courses.</p>
+            )
+        }
+
+
+
         </ul>
       </div>
     </div>
