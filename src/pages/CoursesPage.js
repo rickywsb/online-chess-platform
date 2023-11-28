@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CourseCard from '../components/Courses/CourseCard';
 import CourseForm from '../components/Courses/CourseForm';
+import { useAuth } from '../contexts/AuthContext'; // 引入 useAuth 钩子
 import '../components/Courses/CoursesPage.css';
 
 axios.defaults.baseURL = 'http://localhost:5001';
@@ -9,8 +10,8 @@ axios.defaults.baseURL = 'http://localhost:5001';
 const CoursesPage = () => {
   const [courses, setCourses] = useState([]);
   const [editingCourse, setEditingCourse] = useState(null);
-  const user = JSON.parse(localStorage.getItem('user'));
-  const userRole = user?.result?.role; // 注意这里的路径可能需要根据实际的响应结构调整
+  const { user } = useAuth(); // 使用 useAuth 钩子获取用户数据
+  const userRole = user?.role; // 直接访问用户角色
 
   console.log("Current user role:", userRole); // 调试信息
 
@@ -92,7 +93,6 @@ const CoursesPage = () => {
       </div>
     </div>
   );
-
 };
 
 export default CoursesPage;

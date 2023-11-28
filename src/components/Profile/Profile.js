@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
-const ProfileComponent = ({ profile, onUpdate }) => {
+const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
   const [editMode, setEditMode] = useState(false);
   const [newBio, setNewBio] = useState(profile.bio);
+  const [newPhoneNumber, setNewPhoneNumber] = useState(profile.phoneNumber);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdate(newBio);
+    onUpdate(newBio, newPhoneNumber);
     setEditMode(false); // 关闭编辑模式
   };
 
@@ -23,22 +24,43 @@ const ProfileComponent = ({ profile, onUpdate }) => {
               onChange={(e) => setNewBio(e.target.value)}
             />
           </div>
+          <div>
+            <label>Phone Number:</label>
+            <input
+              type="text"
+              value={newPhoneNumber}
+              onChange={(e) => setNewPhoneNumber(e.target.value)}
+            />
+          </div>
           <button type="submit">Save Changes</button>
-          <button type="button" onClick={() => setEditMode(false)}>Cancel</button> {/* 修改这里 */}
+          <button type="button" onClick={() => setEditMode(false)}>Cancel</button>
         </form>
       ) : (
         <>
           <p>Bio: {profile.bio}</p>
-          <button onClick={() => setEditMode(true)}>Edit Bio</button>
+          <p>Phone Number: {profile.phoneNumber}</p>
+          {isCurrentUser && <button onClick={() => setEditMode(true)}>Edit Profile</button>}
         </>
       )}
-      {/* 显示已购买的课程 */}
+
+      {/* 显示敏感信息，仅当用户查看自己的资料时 */}
+      {isLoggedIn && isCurrentUser && (
+        <div>
+          <p>Email: {profile.email}</p>
+        </div>
+      )}
+
+      {/* 根据用户角色显示已购买的课程或教授的课程 */}
       <div>
-        <h2>Purchased Courses</h2>
+        <h2>{profile.role === 'instructor' ? 'Teaching Courses' : 'Purchased Courses'}</h2>
         <ul>
-          {profile.purchasedCourses.map(course => (
-            <li key={course.id}>{course.title}</li>
-          ))}
+          {(profile.role === 'instructor' ? profile.teachingCourses : profile.purchasedCourses) && Array.isArray(profile.purchasedCourses) ? (
+            profile.purchasedCourses.map(course => (
+              <li key={course.id}>{course.title}</li>
+            ))
+          ) : (
+            <p>No courses.</p>
+          )}
         </ul>
       </div>
     </div>

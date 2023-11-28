@@ -11,18 +11,21 @@ export const loginUser = async (email, password) => {
 
     }
     return response.data;
+    console.log(response.data); // 添加这行来检查响应数据
   } catch (error) {
     throw error;
   }
 };
 
 // Add Register User Function
-export const registerUser = async (username, email, password) => {
+export const registerUser = async (username, email, password, phoneNumber) => {
     try {
       const response = await axios.post(`${API_URL}/auth/register`, {
         username,
         email,
         password,
+        phoneNumber, // 确保 phoneNumber 被包括在请求体中
+
         role: 'student' // 设置默认角色为学生
       });
       // 这里你可以根据需要处理响应，例如保存用户数据或直接登录用户

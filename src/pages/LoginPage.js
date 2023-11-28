@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // 引入 useHistory 钩子
-
+import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api/auth';
+import { useAuth } from '../contexts/AuthContext'; // Import useAuth
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // 使用 useHistory 钩子
+  const navigate = useNavigate();
+  const { login } = useAuth(); // Destructure login function from useAuth
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const data = await loginUser(email, password);
       localStorage.setItem('token', data.token);
-      localStorage.setItem('userId', data.result._id); // 从 data.result 中提取 _id
-      console.log('Logged in user ID:', data.result._id); // 确认存储的用户ID
+      localStorage.setItem('userId', data.result._id);
 
-      navigate('/'); // 登录后重定向到主页
+      login(data.result); // Call login from AuthContext with the user data
+
+      navigate('/'); // Navigate to home page after login
     } catch (error) {
       console.error('Login failed:', error);
-      // 可以在这里处理错误，例如显示错误消息
+      // Handle login error
     }
   };
 
