@@ -15,6 +15,7 @@ const LoginPage = () => {
       const data = await loginUser(email, password);
       localStorage.setItem('token', data.token);
       localStorage.setItem('userId', data.result._id);
+      localStorage.setItem('userRole', data.result.role); // 存储用户角色
 
       login(data.result); // Call login from AuthContext with the user data
 

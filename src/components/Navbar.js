@@ -24,10 +24,13 @@ const Navbar = () => {
         <>
           {/* 使用用户ID构建个人资料页面的链接 */}
           <Link to={`/profile/${user?._id}`} className="nav-item">Profile</Link>
+          
           <button onClick={handleLogout} className="nav-item">Logout</button>
         </>
       )}
       <Link to="/cart" className="nav-item">Cart</Link>
+      {/* 如果用户是管理员，显示管理员页面的链接 */}
+      {user?.role === 'admin' && <Link to="/admin" className="nav-item">Admin</Link>}
     </nav>
   );
 };

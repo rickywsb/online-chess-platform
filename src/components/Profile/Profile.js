@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // React Router v6
 
 const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
   const [editMode, setEditMode] = useState(false);
   const [newBio, setNewBio] = useState(profile.bio);
   const [newPhoneNumber, setNewPhoneNumber] = useState(profile.phoneNumber);
+
+
+  const navigate = useNavigate();
+
+  const handleCourseClick = (courseId) => {
+   
+
+   
+    navigate(`/courses/${courseId}/modules`);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,30 +54,28 @@ const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
         </>
       )}
 
-      {/* 显示敏感信息，仅当用户查看自己的资料时 */}
       {isLoggedIn && isCurrentUser && (
         <div>
           <p>Email: {profile.email}</p>
         </div>
       )}
 
-      {/* 根据用户角色显示已购买的课程或教授的课程 */}
       <div>
         <h2>{profile.role === 'instructor' ? 'Teaching Courses' : 'Purchased Courses'}</h2>
         <ul>
-        {
-            Array.isArray(profile.courses) && profile.courses.length > 0 ? (
+            {Array.isArray(profile.courses) && profile.courses.length > 0 ? (
               profile.courses.map(course => (
-                <li key={course._id}>{course.title}</li>
+                <li key={course._id} style={{ cursor: 'pointer', color: 'blue' }}>
+                  <button onClick={() => handleCourseClick(course._id)} style={{ border: 'none', background: 'none', color: 'blue', cursor: 'pointer', padding: 0, textDecoration: 'underline' }}>
+                    {course.title}
+                  </button>
+                </li>
               ))
             ) : (
               <p>No purchased courses.</p>
-            )
-        }
+            )}
+      </ul>
 
-
-
-        </ul>
       </div>
     </div>
   );

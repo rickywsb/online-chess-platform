@@ -16,7 +16,7 @@ import LoginPage from './pages/LoginPage.js';
 import CartPage from './pages/CartPage.js';
 import RegisterPage from './pages/RegisterPage.js';
 import ProfilePage from './pages/Profile.js';
-
+import AdminPage from './pages/AdminPage.js';
 function App() {
   return (
     <Router>
@@ -32,6 +32,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/courses/:courseId/modules" element={<CourseModulesPage />} />
+            <Route path="/admin" element={<AdminPage />} />
 
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/login" element={<LoginPage />} />
