@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ModuleCard from './ModuleCard';
 import ModuleForm from './ModuleForm'; // Ensure you have a ModuleForm component
+import { useAuth } from '../../contexts/AuthContext'; // 引入 useAuth 钩子
 
 const ModuleList = ({ courseId }) => {
   const [modules, setModules] = useState([]);
   const [showModuleForm, setShowModuleForm] = useState(false);
   const [editingModule, setEditingModule] = useState(null); // State to hold the module being edited
-  const user = JSON.parse(localStorage.getItem('user'));
-  const userRole = user?.result?.role; // 注意这里的路径可能需要根据实际的响应结构调整
+  const { user } = useAuth(); // 使用 useAuth 钩子获取用户数据
+  const userRole = user?.role; // 直接访问用户角色
+  console.log("Current user role:", userRole);
 
   useEffect(() => {
     const fetchModules = async () => {

@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {enrollInCourse} from '../../api/course.js'; 
+import { enrollInCourse } from '../../api/course.js'; 
 import './CourseCard.css';
 
-const CourseCard = ({ course, onEdit, onDelete, userRole }) => {
+const CourseCard = ({ course, onEdit, onDelete, userRole, isEnrolled }) => {
   const handleEnroll = async () => {
     try {
       await enrollInCourse(course._id);
-      alert('Enrolled successfully!'); // 可以替换为更复杂的通知系统
+      alert('Enrolled successfully!');
     } catch (error) {
       console.error('Failed to enroll:', error);
-      alert('Failed to enroll in course.'); // 同上
+      alert('Failed to enroll in course.');
     }
   };
+
+  const canViewModules = userRole === 'admin' || userRole === 'instructor' || isEnrolled;
+
 
   return (
     <div className="course-card">
@@ -21,14 +24,18 @@ const CourseCard = ({ course, onEdit, onDelete, userRole }) => {
       <div className="course-footer">
         <span className="course-price">${course.price}</span>
 
+        
+
+         {/* 显示查看模块按钮 */}
+         {canViewModules && (
+          <Link to={`/courses/${course._id}/modules`} className="view-modules-button">
+            View Modules
+          </Link>
+        )}
+
         {/* 学生角色的按钮 */}
-        {userRole === 'student' && (
-          <>
-            <Link to={`/courses/${course._id}/modules`} className="view-modules-button">
-              View Modules
-            </Link>
-            <button className="enroll-button" onClick={handleEnroll}>Enroll Now</button>
-          </>
+        {userRole === 'student' && !isEnrolled && (
+          <button className="enroll-button" onClick={handleEnroll}>Enroll Now</button>
         )}
 
         {/* 教师和管理员角色的按钮 */}
@@ -36,9 +43,6 @@ const CourseCard = ({ course, onEdit, onDelete, userRole }) => {
           <>
             <button className="edit-button" onClick={() => onEdit(course)}>Edit</button>
             <button className="delete-button" onClick={() => onDelete(course._id)}>Delete</button>
-            <Link to={`/courses/${course._id}/modules`} className="view-modules-button">
-              View Modules
-            </Link>
           </>
         )}
       </div>

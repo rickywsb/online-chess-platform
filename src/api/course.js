@@ -65,3 +65,18 @@ export const enrollInCourse = async (courseId) => {
     throw error;
   }
 };
+
+// 获取用户已注册的课程
+export const getEnrolledCourses = async (userId) => {
+  try {
+    const token = localStorage.getItem('token'); // 或者从其他地方获取令牌
+    const response = await axios.get(`${API_BASE_URL}/user/${userId}/enrolled`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
