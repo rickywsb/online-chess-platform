@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import CourseCard from '../components/Courses/CourseCard'; // 确保路径正确
+import SearchBar from '../components/SearchBar.js';
+
 import { getEnrolledCourses } from '../api/course'; // 引入 getEnrolledCourses 函数
 
 const HomePage = () => {
@@ -26,7 +28,8 @@ const HomePage = () => {
     <div>
       <h1>Welcome to Chess Online Education</h1>
       <p>Learn chess with the best courses and instructors online.</p>
-
+      <SearchBar />
+      
       {user && enrolledCourses.length > 0 && (
         <div>
           <h2>Continue Study</h2>

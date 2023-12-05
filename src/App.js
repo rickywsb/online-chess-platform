@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CourseModulesPage from './pages/CourseModulesPage.js'; // 导入你的模块页面组件
+
 import { AuthProvider } from './contexts/AuthContext.js';
 
 import './index.css';
@@ -17,6 +18,8 @@ import CartPage from './pages/CartPage.js';
 import RegisterPage from './pages/RegisterPage.js';
 import ProfilePage from './pages/Profile.js';
 import AdminPage from './pages/AdminPage.js';
+import DetailPage from './pages/DetailPage';
+
 function App() {
   return (
     <Router>
@@ -30,6 +33,8 @@ function App() {
           {/* 路由设置 */}
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/player/:username" element={<DetailPage />} />
+
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/courses/:courseId/modules" element={<CourseModulesPage />} />
             <Route path="/admin" element={<AdminPage />} />
