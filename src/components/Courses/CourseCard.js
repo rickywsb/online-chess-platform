@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { enrollInCourse } from '../../api/course.js'; 
+import { enrollInCourse, getEnrolledStudents } from '../../api/course.js'; 
+import { useState, useEffect } from 'react';
 import './CourseCard.css';
 
 const CourseCard = ({ course, onEdit, onDelete, userRole, isEnrolled }) => {
@@ -13,6 +14,21 @@ const CourseCard = ({ course, onEdit, onDelete, userRole, isEnrolled }) => {
       alert('Failed to enroll in course.');
     }
   };
+
+  const [enrolledStudents, setEnrolledStudents] = useState([]);
+
+useEffect(() => {
+  const fetchEnrolledStudents = async () => {
+    try {
+      const students = await getEnrolledStudents(course._id);
+      setEnrolledStudents(students);
+    } catch (error) {
+      console.error('Error fetching enrolled students:', error);
+    }
+  };
+
+  fetchEnrolledStudents();
+}, [course._id]);
 
   const canViewModules = userRole === 'admin' || userRole === 'instructor' || isEnrolled;
 
@@ -46,6 +62,16 @@ const CourseCard = ({ course, onEdit, onDelete, userRole, isEnrolled }) => {
           </>
         )}
       </div>
+      <div className="enrolled-students">
+      <h4>Coursemates</h4>
+      <ul>
+        {enrolledStudents.map(student => (
+          <li key={student._id}>
+            <Link to={`/profile/${student._id}`}>{student.username}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
     </div>
   );
 };

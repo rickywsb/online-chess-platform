@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getPlayersByTitle } from '../api/chessApi';
 import TitleSearchBar from '../components/TitleSearchBar'; // 引入 TitleSearchBar 组件
-
 const TitlePlayersPage = () => {
     const { title } = useParams();
     const [players, setPlayers] = useState([]);
