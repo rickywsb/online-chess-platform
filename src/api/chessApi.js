@@ -32,3 +32,15 @@ export const unfollowPlayer = async (chessPlayerUsername) => {
   export const getFollowers = async (chessPlayerUsername) => {
     return axios.get(`/api/player/${chessPlayerUsername}/followers`);
 };
+
+// 在 chessApi.js 中添加
+
+export const getPlayersByTitle = async (title) => {
+    try {
+        const response = await axios.get(`${CHESS_API_BASE_URL}/titled/${title}`);
+        return response.data.players;
+    } catch (error) {
+        console.error('Error fetching players by title:', error);
+        throw error;
+    }
+};

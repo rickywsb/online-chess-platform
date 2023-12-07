@@ -19,6 +19,7 @@ import RegisterPage from './pages/RegisterPage.js';
 import ProfilePage from './pages/Profile.js';
 import AdminPage from './pages/AdminPage.js';
 import DetailPage from './pages/DetailPage';
+import TitlePlayersPage from './pages/TitlePlayersPage'; // 引入 TitlePlayersPage 组件
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/player/:username" element={<DetailPage />} />
+            <Route path="/title/:title" element={<TitlePlayersPage />} /> {/* 添加新路由 */}
 
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/courses/:courseId/modules" element={<CourseModulesPage />} />
