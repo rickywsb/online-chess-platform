@@ -1,0 +1,41 @@
+.blog-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .blog-post {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .blog-post h2 {
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .blog-post h2:hover {
+    color: #007bff;
+  }
+  
+  .blog-post img {
+    width: 100%; /* This will make all images take up the full width of the blog post container */
+    height: auto; /* This maintains the aspect ratio of the images */
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  .blog-post p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .blog-post em {
+    color: #999;
+    font-size: 0.9em;
+  }
+  
+  /* Add more styling as needed */

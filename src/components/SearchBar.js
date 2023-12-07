@@ -1,6 +1,7 @@
 // components/SearchBar.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './SearchBar.css'; // Import the CSS file
 
 const SearchBar = () => {
     const [username, setUsername] = useState('');

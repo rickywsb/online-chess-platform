@@ -1,7 +1,7 @@
 // components/TitleSearchBar.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import './TitleSearchBar.css';
 const titles = ['GM', 'WGM', 'IM', 'WIM', 'FM', 'WFM', 'NM', 'WNM', 'CM', 'WCM'];
 
 const TitleSearchBar = () => {
