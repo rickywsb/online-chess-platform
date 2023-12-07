@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'; // 引入 useNavigate 钩子
 import { useAuth } from '../contexts/AuthContext'; // 引入 useAuth 钩子
 import '../components/Courses/CoursesPage.css';
 
-axios.defaults.baseURL = 'http://localhost:5001';
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 Modal.setAppElement('#root'); // 设置模态对话框的根元素
 
 
