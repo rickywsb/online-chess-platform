@@ -1,7 +1,7 @@
 // api/admin.js
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5001'; // 或您的后端服务器地址
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL; // 或您的后端服务器地址
 
 // 获取认证令牌的函数
 const getAuthConfig = () => {

@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5001/api';
+console.log('API URL:', process.env.REACT_APP_API_URL); // 这将打印出环境变量的值，以便于调试
+console.log('API URL:', process.env.REACT_APP_API_BASE_URL); // 这将打印出环境变量的值，以便于调试
+
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const loginUser = async (email, password) => {
   try {

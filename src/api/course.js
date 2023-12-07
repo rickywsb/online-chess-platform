@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-const API_BASE_URL = '/api/courses'; // You might need to adjust this based on your actual API endpoint
+const API_BASE = process.env.REACT_APP_API_BASE_URL; // 或您的后端服务器地址
+const API_BASE_URL = `${API_BASE}/api/courses`; // You might need to adjust this based on your actual API endpoint
 
 // Add a new course
 export const addCourse = async (courseData) => {

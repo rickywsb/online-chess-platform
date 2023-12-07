@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5001/api/videos'; // Adjust the base URL as needed
+const API_BASE = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = `${API_BASE}/api/videos`; // Adjust the base URL as needed
 
 // Fetch video details by ID
 export const getVideoById = async (videoId) => {

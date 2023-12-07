@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-const API = axios.create({ baseURL: 'http://localhost:5001' });
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+const API = axios.create({ baseURL: API_BASE_URL });
 
 // 获取当前登录用户的个人资料
 export const fetchMyProfile = async (token) => {
