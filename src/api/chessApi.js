@@ -44,3 +44,15 @@ export const getPlayersByTitle = async (title) => {
         throw error;
     }
 };
+
+
+export const addComment = async (chessPlayerUsername, comment) => {
+    const token = localStorage.getItem('token');
+    return axios.post('/api/comment-player', { chessPlayerUsername, comment }, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+  };
+  
+  export const getComments = async (chessPlayerUsername) => {
+    return axios.get(`/api/comments/${chessPlayerUsername}`);
+  };
