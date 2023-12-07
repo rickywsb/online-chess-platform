@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPlayerProfile, followPlayer, unfollowPlayer, getFollowers } from '../api/chessApi';
 import PlayerProfile from '../components/PlayerProfile';
+import './DetailPage.css';
 
 const DetailPage = () => {
   const { username } = useParams();
@@ -37,16 +38,19 @@ const DetailPage = () => {
     const updatedFollowers = await getFollowers(username);
     setFollowers(updatedFollowers.data);
   };
-
   return (
-    <div>
+    <div className="detail-container">
       <h1>Player Detail</h1>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       {playerData && <PlayerProfile playerData={playerData} />}
-      <button onClick={handleFollow}>Follow</button>
-      <button onClick={handleUnfollow}>Unfollow</button>
+      
+      <div className="player-buttons">
+        <button onClick={handleFollow} className="button">Follow</button>
+        <button onClick={handleUnfollow} className="button">Unfollow</button>
+      </div>
+
       <h2>Followers</h2>
-      <ul>
+      <ul className="followers-list">
         {followers.map(follower => (
           <li key={follower._id}>
             <Link to={`/profile/${follower.user._id}`}>
@@ -58,6 +62,5 @@ const DetailPage = () => {
     </div>
   );
 };
-
 
 export default DetailPage;

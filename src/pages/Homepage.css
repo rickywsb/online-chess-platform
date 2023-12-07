@@ -1,0 +1,122 @@
+.homepage-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    gap: 20px; /* Adds space between columns */
+  }
+  .homepage-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    gap: 30px; /* Adjust the gap between columns */
+  }
+  
+  .main-column {
+    flex: 7; /* Takes up 7 parts of the available space */
+    padding: 20px;
+    order: 1; 
+  }
+  
+  .search-column {
+    flex: 3; /* Takes up 3 parts of the available space */
+    padding: 20px;
+    border-left: 2px solid #ddd;
+    order: 2;
+     /* Adds space at the top */
+  }
+  /* Style the search bars to make them more prominent */
+  .search-bar, .title-search-bar {
+    width: 100%; /* Make search bars full width of the column */
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+  }
+  
+  .search-column {
+    flex: 1; /* Takes up 1 fraction of the available space */
+    padding: 20px;
+    text-align: center; /* Center-aligns text horizontally */
+    margin-bottom: 15px;
+  }
+  
+  .main-column {
+    flex: 2; /* Takes up 2 fractions of the available space, making it larger than the search column */
+    padding: 20px;
+  }
+  
+  .homepage-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .course-container, .event-info, .expert-tips {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .event-info h3, .expert-tips h3 {
+    color: #007bff;
+  }
+  
+  .event-info div, .expert-tips blockquote {
+    margin-bottom: 20px;
+  }
+  
+  footer {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  blockquote {
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+    font-style: italic;
+  }
+  
+
+  .events-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .event-card {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .event-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .event-date, .event-time {
+    background-color: #eef;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Additional styling can be added here */
+    

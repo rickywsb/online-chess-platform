@@ -1,6 +1,6 @@
-// components/TitleSearchBar.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './TitleSearchBar.css'; // Import the CSS file
 
 const titles = ['GM', 'WGM', 'IM', 'WIM', 'FM', 'WFM', 'NM', 'WNM', 'CM', 'WCM'];
 
@@ -10,19 +10,28 @@ const TitleSearchBar = () => {
 
     const handleTitleSearch = async () => {
         if (title) {
-            navigate(`/title/${title}`); // Redirect to a page showing list of players with the selected title
+            navigate(`/title/${title}`);
         }
     };
 
     return (
-        <div>
-            <select value={title} onChange={(e) => setTitle(e.target.value)}>
+        <div className="title-search-bar-container">
+            <select
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="title-search-bar-select"
+            >
                 <option value="">Select a title</option>
                 {titles.map((t) => (
                     <option key={t} value={t}>{t}</option>
                 ))}
             </select>
-            <button onClick={handleTitleSearch}>Search</button>
+            <button
+                onClick={handleTitleSearch}
+                className="title-search-bar-button"
+            >
+                Search
+            </button>
         </div>
     );
 };

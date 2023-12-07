@@ -1,0 +1,56 @@
+.detail-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif; /* You can choose your preferred font */
+  }
+  
+  .detail-container h1, .detail-container h2 {
+    color: #333;
+    text-align: center;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }
+  
+  .player-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .followers-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .followers-list li {
+    margin-bottom: 10px;
+  }
+  
+  .followers-list a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .followers-list a:hover {
+    text-decoration: underline;
+  }
+  

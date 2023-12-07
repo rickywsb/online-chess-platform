@@ -4,7 +4,7 @@ console.log('API URL:', process.env.REACT_APP_API_URL); // 这将打印出环境
 console.log('API URL:', process.env.REACT_APP_API_BASE_URL); // 这将打印出环境变量的值，以便于调试
 
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "https://online-chess-platform-7f442b10751d.herokuapp.com/api" || process.env.REACT_APP_API_URL;
 
 export const loginUser = async (email, password) => {
   try {
