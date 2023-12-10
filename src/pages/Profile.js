@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { fetchMyProfile, fetchUserProfile, updateMyProfile } from '../api/profile.js';
 import ProfileComponent from '../components/Profile/Profile.js';
 import { useParams } from 'react-router-dom';
+import './ProfilePage.css';
+
 
 const ProfilePage = () => {
     const { id } = useParams();
@@ -61,8 +63,10 @@ const ProfilePage = () => {
     }
 
     return (
-        <div>
-            {profile ? (
+        <div className="container">
+            {error ? (
+                <div className="error-message">{error}</div>
+            ) : profile ? (
                 <ProfileComponent 
                     profile={profile} 
                     onUpdate={handleUpdateProfile} 
@@ -70,7 +74,7 @@ const ProfilePage = () => {
                     isCurrentUser={id ? id === localStorage.getItem('userId') : true}
                 />
             ) : (
-                <p>Loading profile...</p>
+                <p className="loading">Loading profile...</p>
             )}
         </div>
     );

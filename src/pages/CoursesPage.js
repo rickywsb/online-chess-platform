@@ -3,7 +3,8 @@ import axios from 'axios';
 import CourseCard from '../components/Courses/CourseCard';
 import CourseForm from '../components/Courses/CourseForm';
 import Modal from 'react-modal';
-import { useNavigate } from 'react-router-dom'; // 引入 useNavigate 钩子
+import { useNavigate } from 'react-router-dom';
+import './ModalStyles.css'; // 引入 useNavigate 钩子
 
 import { useAuth } from '../contexts/AuthContext'; // 引入 useAuth 钩子
 import '../components/Courses/CoursesPage.css';
