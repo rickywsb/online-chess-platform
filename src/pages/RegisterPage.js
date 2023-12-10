@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { registerUser } from '../api/auth'; // 确保路径正确
-import { useNavigate } from 'react-router-dom'; // 引入 useNavigate 钩子
+import { useNavigate } from 'react-router-dom'; 
+import './LoginForm.css';// 引入 useNavigate 钩子
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({

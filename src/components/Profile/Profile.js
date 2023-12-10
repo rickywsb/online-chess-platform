@@ -23,19 +23,21 @@ const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
   };
 
   return (
-    <div>
+    <div >
       <h1>Profile</h1>
-      <p>Username: {profile.username}</p>
+      <div className="profile-info">
+        <span>Username:</span> {profile.username}
+      </div>
       {editMode ? (
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="profile-info">
             <label>Bio:</label>
             <textarea
               value={newBio}
               onChange={(e) => setNewBio(e.target.value)}
             />
           </div>
-          <div>
+          <div className="profile-info">
             <label>Phone Number:</label>
             <input
               type="text"
@@ -43,30 +45,34 @@ const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
               onChange={(e) => setNewPhoneNumber(e.target.value)}
             />
           </div>
-          <button type="submit">Save Changes</button>
-          <button type="button" onClick={() => setEditMode(false)}>Cancel</button>
+          <button className="button" type="submit">Save Changes</button>
+          <button className="button" type="button" onClick={() => setEditMode(false)}>Cancel</button>
         </form>
       ) : (
         <>
-          <p>Bio: {profile.bio}</p>
-          <p>Phone Number: {profile.phoneNumber}</p>
-          {isCurrentUser && <button onClick={() => setEditMode(true)}>Edit Profile</button>}
+          <div className="profile-info">
+            <span>Bio:</span> {profile.bio || 'N/A'}
+          </div>
+          <div className="profile-info">
+            <span>Phone Number:</span> {profile.phoneNumber}
+          </div>
+          {isCurrentUser && <button className="button" onClick={() => setEditMode(true)}>Edit Profile</button>}
         </>
       )}
-
+  
       {isLoggedIn && isCurrentUser && (
-        <div>
-          <p>Email: {profile.email}</p>
+        <div className="profile-info email">
+          <span>Email:</span> {profile.email}
         </div>
       )}
-
+  
       <div>
         <h2>{profile.role === 'instructor' ? 'Teaching Courses' : 'Purchased Courses'}</h2>
-        <ul>
+        <ul className="list">
             {Array.isArray(profile.courses) && profile.courses.length > 0 ? (
               profile.courses.map(course => (
-                <li key={course._id} style={{ cursor: 'pointer', color: 'blue' }}>
-                  <button onClick={() => handleCourseClick(course._id)} style={{ border: 'none', background: 'none', color: 'blue', cursor: 'pointer', padding: 0, textDecoration: 'underline' }}>
+                <li key={course._id} className="list-item">
+                  <button className="button" onClick={() => handleCourseClick(course._id)}>
                     {course.title}
                   </button>
                 </li>
@@ -74,11 +80,12 @@ const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
             ) : (
               <p>No purchased courses.</p>
             )}
-      </ul>
-
+        </ul>
       </div>
     </div>
   );
+  
+    
 };
 
 export default ProfileComponent;

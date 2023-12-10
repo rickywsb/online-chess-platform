@@ -34,9 +34,9 @@ useEffect(() => {
 
 
   return (
-    <div className="course-card">
+    <div className="course-details-container">
       <h3 className="course-title">{course.title}</h3>
-      <p className="course-description">{course.description}</p>
+      <p className="course-subtitle">{course.description}</p>
       <div className="course-footer">
         <span className="course-price">${course.price}</span>
 
@@ -44,10 +44,15 @@ useEffect(() => {
 
          {/* 显示查看模块按钮 */}
          {canViewModules && (
-          <Link to={`/courses/${course._id}/modules`} className="view-modules-button">
-            View Modules
-          </Link>
+          <div className="course-enrollment-status">
+           
+            <Link to={`/courses/${course._id}/modules`} className="view-modules-button">
+              View Modules
+            </Link>
+            <p className="enrollment-notice">You are already enrolled in this course.</p>
+          </div>
         )}
+
 
         {/* 学生角色的按钮 */}
         {userRole === 'student' && !isEnrolled && (

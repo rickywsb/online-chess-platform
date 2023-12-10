@@ -1,0 +1,69 @@
+.cart-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .cart-items {
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .cart-item {
+    margin-bottom: 1rem;
+  }
+  
+  .course-title {
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .course-description {
+    color: #666;
+    margin: 0.5rem 0;
+  }
+  
+  .course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .course-price {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .cart-checkout {
+    text-align: right;
+  }
+  
+  .total-amount {
+    font-size: 1.2em;
+    margin: 1rem 0;
+  }
+  
+  .total-price {
+    font-weight: bold;
+  }
+  
+  .checkout-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .checkout-button:hover {
+    background-color: #0056b3;
+  }
+  
