@@ -44,28 +44,26 @@ useEffect(() => {
 
          {/* 显示查看模块按钮 */}
          {canViewModules && (
-          <div className="course-enrollment-status">
-           
-            <Link to={`/courses/${course._id}/modules`} className="view-modules-button">
-              View Modules
-            </Link>
-            <p className="enrollment-notice">You are already enrolled in this course.</p>
-          </div>
-        )}
+  <div className="course-enrollment-status centered-link">
+    <Link to={`/courses/${course._id}/modules`} className="view-modules-button">
+      View Modules
+    </Link>
+    <p className="enrollment-notice">You are already enrolled in this course.</p>
+  </div>
+)}
 
+{/* Enrollment button for students */}
+{userRole === 'student' && !isEnrolled && (
+  <button className="enroll-button" onClick={handleEnroll}>Enroll Now</button>
+)}
 
-        {/* 学生角色的按钮 */}
-        {userRole === 'student' && !isEnrolled && (
-          <button className="enroll-button" onClick={handleEnroll}>Enroll Now</button>
-        )}
-
-        {/* 教师和管理员角色的按钮 */}
-        {(userRole === 'instructor' || userRole === 'admin') && (
-          <>
-            <button className="edit-button" onClick={() => onEdit(course)}>Edit</button>
-            <button className="delete-button" onClick={() => onDelete(course._id)}>Delete</button>
-          </>
-        )}
+{/* Edit and Delete buttons for instructors and admins */}
+{(userRole === 'instructor' || userRole === 'admin') && (
+  <div className="edit-delete-buttons">
+    <button className="edit-button" onClick={() => onEdit(course)}>Edit</button>
+    <button className="delete-button" onClick={() => onDelete(course._id)}>Delete</button>
+  </div>
+)}
       </div>
       <div className="enrolled-students">
       <h4>Coursemates</h4>

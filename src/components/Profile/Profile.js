@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // React Router v6
-
+import "./profile.css";
 const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
   const [editMode, setEditMode] = useState(false);
   const [newBio, setNewBio] = useState(profile.bio);
@@ -23,7 +23,7 @@ const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
   };
 
   return (
-    <div >
+    <div className='profile-form' >
       <h1>Profile</h1>
       <div className="profile-info">
         <span>Username:</span> {profile.username}
@@ -46,6 +46,8 @@ const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
             />
           </div>
           <button className="button" type="submit">Save Changes</button>
+          <br/>
+          
           <button className="button" type="button" onClick={() => setEditMode(false)}>Cancel</button>
         </form>
       ) : (

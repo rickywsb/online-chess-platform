@@ -65,7 +65,7 @@ const DetailPage = () => {
       {playerData && <PlayerProfile playerData={playerData} />}
       {isLoggedIn && (
         <>
-          <button onClick={handleFollow}>Follow</button>
+          <button onClick={handleFollow} style={{ marginRight: '10px' }}>Follow</button>
           <button onClick={handleUnfollow}>Unfollow</button>
         </>
       )}
