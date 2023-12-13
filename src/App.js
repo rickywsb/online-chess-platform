@@ -33,7 +33,7 @@ function App() {
           </header>
           {/* 路由设置 */}
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/player/:username" element={<DetailPage />} />
             <Route path="/title/:title" element={<TitlePlayersPage />} /> {/* 添加新路由 */}
 
