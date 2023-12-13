@@ -62,7 +62,8 @@ const DetailPage = () => {
       <h1>Player Detail</h1>
       {error && <p>{error}</p>}
       {playerData && <PlayerProfile playerData={playerData} />}
-      <button onClick={handleFollow}>Follow</button>
+      <button onClick={handleFollow} style={{ marginRight: '10px' }}>Follow</button>
+
       <button onClick={handleUnfollow}>Unfollow</button>
 
       <h2>Followers</h2>
@@ -90,6 +91,7 @@ const DetailPage = () => {
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="Leave a comment"
         />
+        <br/>
         <button onClick={handleAddComment}>Comment</button>
       </div>
     </div>

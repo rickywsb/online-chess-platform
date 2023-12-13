@@ -61,6 +61,7 @@ const CourseForm = ({ course, setCourses, closeModal }) => {
         required
       />
       <button type="submit">{course ? 'Update' : 'Create'} Course</button>
+      <br/>
       {closeModal && (
         <button type="button" onClick={closeModal}>Cancel</button>
       )}
