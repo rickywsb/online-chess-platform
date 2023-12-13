@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // React Router v6
 
-const ProfileComponent = ({ profile, onUpdate,  isCurrentUser }) => {
+const ProfileComponent = ({ profile, onUpdate, isLoggedIn, isCurrentUser }) => {
   const [editMode, setEditMode] = useState(false);
   const [newBio, setNewBio] = useState(profile.bio);
   const [newPhoneNumber, setNewPhoneNumber] = useState(profile.phoneNumber);
@@ -60,7 +60,7 @@ const ProfileComponent = ({ profile, onUpdate,  isCurrentUser }) => {
         </>
       )}
   
-      { isCurrentUser && (
+      {isLoggedIn && isCurrentUser && (
         <div className="profile-info email">
           <span>Email:</span> {profile.email}
         </div>

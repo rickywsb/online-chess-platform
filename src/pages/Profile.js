@@ -4,6 +4,7 @@ import ProfileComponent from '../components/Profile/Profile.js';
 import { useParams } from 'react-router-dom';
 import './ProfilePage.css';
 
+
 const ProfilePage = () => {
     const { id } = useParams();
     const [profile, setProfile] = useState(null);
@@ -11,33 +12,31 @@ const ProfilePage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            console.log('Fetching data...');
             try {
-                let response;
                 const token = localStorage.getItem('token');
-
-                if (id) {
-                    // Fetch other user's profile without needing a token
-                    response = await fetchUserProfile(id);
-                } else if (token) {
-                    // Fetch own profile if logged in
-                    response = await fetchMyProfile(token);
-                } else {
-                    setError('No profile ID provided and not logged in');
+                if (!token) {
+                    setError('No authentication token found');
                     return;
                 }
 
+                let response;
+                if (id) {
+                    response = await fetchUserProfile(id, token);
+                } else {
+                    response = await fetchMyProfile(token);
+                }
+
+                console.log('Profile data received:', response.data);
                 setProfile(response.data);
             } catch (error) {
+                console.error('Error fetching profile:', error);
                 setError('Error fetching profile: ' + error.message);
             }
         };
 
         fetchData();
     }, [id]);
-
-    const isOwner = id ? id === localStorage.getItem('userId') : true;
-    const userRole = localStorage.getItem('userRole'); // Assuming user role is stored in localStorage
-    const canEdit = localStorage.getItem('token') && (isOwner || userRole === 'admin');
 
     const handleUpdateProfile = async (newBio, newPhoneNumber) => {
         try {
@@ -70,9 +69,9 @@ const ProfilePage = () => {
             ) : profile ? (
                 <ProfileComponent 
                     profile={profile} 
-                    onUpdate={canEdit ? handleUpdateProfile : null} 
+                    onUpdate={handleUpdateProfile} 
                     isLoggedIn={!!localStorage.getItem('token')}
-                    isCurrentUser={isOwner}
+                    isCurrentUser={id ? id === localStorage.getItem('userId') : true}
                 />
             ) : (
                 <p className="loading">Loading profile...</p>
