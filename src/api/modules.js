@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = process.env.REACT_APP_API_BASE_URL;
+const API_BASE = "https://online-chess-platform-7f442b10751d.herokuapp.com"
 const API_BASE_URL = `${API_BASE}/api/modules`;
 
 // 获取特定课程的所有模块

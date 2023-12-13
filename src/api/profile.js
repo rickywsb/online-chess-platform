@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+const API_BASE_URL = "https://online-chess-platform-7f442b10751d.herokuapp.com"
 const API = axios.create({ baseURL: API_BASE_URL });
 
 // 获取当前登录用户的个人资料
