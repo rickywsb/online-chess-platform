@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CourseModulesPage from './pages/CourseModulesPage.js'; // 导入你的模块页面组件
 
 import { AuthProvider } from './contexts/AuthContext.js';
+import { Navigate } from 'react-router-dom';
 
 import './index.css';
 
@@ -33,6 +34,8 @@ function App() {
           </header>
           {/* 路由设置 */}
           <Routes>
+            <Route path="/" element={<Navigate to="/home" />} />
+
             <Route path="/home" element={<HomePage />} />
             <Route path="/player/:username" element={<DetailPage />} />
             <Route path="/title/:title" element={<TitlePlayersPage />} /> {/* 添加新路由 */}
