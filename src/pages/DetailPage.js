@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getPlayerProfile, followPlayer, unfollowPlayer, getFollowers, getComments, addComment } from '../api/chessApi';
 import PlayerProfile from '../components/PlayerProfile';
+import { useAuth } from '../contexts/AuthContext'; // 确保正确导入 useAuth
 
 const DetailPage = () => {
   const { username } = useParams();
@@ -11,7 +12,7 @@ const DetailPage = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState('');
-
+  const { user, isLoggedIn } = useAuth();
   useEffect(() => {
     const fetchPlayerData = async () => {
       try {
@@ -62,8 +63,12 @@ const DetailPage = () => {
       <h1>Player Detail</h1>
       {error && <p>{error}</p>}
       {playerData && <PlayerProfile playerData={playerData} />}
-      <button onClick={handleFollow}>Follow</button>
-      <button onClick={handleUnfollow}>Unfollow</button>
+      {isLoggedIn && (
+        <>
+          <button onClick={handleFollow}>Follow</button>
+          <button onClick={handleUnfollow}>Unfollow</button>
+        </>
+      )}
 
       <h2>Followers</h2>
       <ul>
@@ -84,14 +89,16 @@ const DetailPage = () => {
           </li>
         ))}
       </ul>
-      <div>
-        <textarea
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Leave a comment"
-        />
-        <button onClick={handleAddComment}>Comment</button>
-      </div>
+      {isLoggedIn && (
+        <div>
+          <textarea
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="Leave a comment"
+          />
+          <button onClick={handleAddComment}>Comment</button>
+        </div>
+      )}
     </div>
   );
 };

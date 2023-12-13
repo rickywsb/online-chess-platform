@@ -38,6 +38,10 @@ const ProfilePage = () => {
         fetchData();
     }, [id]);
 
+    const isOwner = id ? id === localStorage.getItem('userId') : true;
+    const userRole = localStorage.getItem('userRole'); // Assuming user role is stored in localStorage
+    const canEdit = localStorage.getItem('token') && (isOwner || userRole === 'admin');
+
     const handleUpdateProfile = async (newBio, newPhoneNumber) => {
         try {
             const token = localStorage.getItem('token');
@@ -69,9 +73,9 @@ const ProfilePage = () => {
             ) : profile ? (
                 <ProfileComponent 
                     profile={profile} 
-                    onUpdate={handleUpdateProfile} 
+                    onUpdate={canEdit ? handleUpdateProfile : null} 
                     isLoggedIn={!!localStorage.getItem('token')}
-                    isCurrentUser={id ? id === localStorage.getItem('userId') : true}
+                    isCurrentUser={isOwner}
                 />
             ) : (
                 <p className="loading">Loading profile...</p>
