@@ -8,28 +8,24 @@ const TitlePlayersPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // 尝试从 sessionStorage 获取保存的搜索结果
-        const savedPlayers = sessionStorage.getItem(`players-${title}`);
-        if (savedPlayers) {
-            setPlayers(JSON.parse(savedPlayers));
-        } else {
-            fetchPlayers();
-        }
+        const fetchPlayers = async () => {
+            try {
+                let savedPlayers = sessionStorage.getItem(`players-${title}`);
+                if (!savedPlayers) {
+                    const playerUsernames = await getPlayersByTitle(title);
+                    savedPlayers = JSON.stringify(playerUsernames);
+                    sessionStorage.setItem(`players-${title}`, savedPlayers);
+                }
+                setPlayers(JSON.parse(savedPlayers));
+            } catch (error) {
+                console.error('Error fetching players by title:', error);
+            }
+        };
+
+        fetchPlayers();
     }, [title]);
 
-    const fetchPlayers = async () => {
-        try {
-            const playerUsernames = await getPlayersByTitle(title);
-            setPlayers(playerUsernames);
-            // 将搜索结果保存到 sessionStorage
-            sessionStorage.setItem(`players-${title}`, JSON.stringify(playerUsernames));
-        } catch (error) {
-            console.error('Error fetching players by title:', error);
-        }
-    };
-
     const handleTitleChange = (newTitle) => {
-        // 在新搜索时清除之前的保存结果
         sessionStorage.removeItem(`players-${title}`);
         navigate(`/title/${newTitle}`);
     };
