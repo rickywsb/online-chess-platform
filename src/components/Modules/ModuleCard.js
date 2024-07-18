@@ -1,13 +1,14 @@
+// ModuleCard.js
 import React, { useState, useEffect } from 'react';
 import VideoPlayer from '../VideoPlayer.js'; // Import the VideoPlayer component
 import { getVideoById } from '../../api/video.js'; // Adjust the import path as needed
-
-import './ModuleCard.css'; // 假设您有一个CSS文件来样式化卡片
+import './ModuleCard.css'; // Ensure you have a CSS file for styling
 
 const ModuleCard = ({ module, onEdit, onDelete }) => {
   const [videoUrl, setVideoUrl] = useState('');
   const user = JSON.parse(localStorage.getItem('user'));
-  const userRole = user?.result?.role; // 注意这里的路径可能需要根据实际的响应结构调整
+  const userRole = user?.role;
+
   useEffect(() => {
     const fetchVideo = async () => {
       try {
@@ -34,13 +35,12 @@ const ModuleCard = ({ module, onEdit, onDelete }) => {
           <VideoPlayer videoUrl={videoUrl} />
         </div>
       )}
-        {(userRole === 'admin' || userRole === 'instructor') && (
-          <div className="module-actions">
-            <button onClick={() => onEdit(module)}>Edit</button>
-            <button onClick={() => onDelete(module._id)}>Delete</button>
-          </div>
-        )}
-
+      {(userRole === 'admin' || userRole === 'instructor') && (
+        <div className="module-actions">
+          <button className="edit-button" onClick={() => onEdit(module)}>Edit</button>
+          <button className="delete-button" onClick={() => onDelete(module._id)}>Delete</button>
+        </div>
+      )}
     </div>
   );
 };

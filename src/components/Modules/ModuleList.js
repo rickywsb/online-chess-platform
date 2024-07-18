@@ -71,7 +71,7 @@ const ModuleList = ({ courseId }) => {
       <h2>Modules</h2>
             {/* 仅当用户是管理员或讲师时显示添加模块按钮 */}
       {(userRole === 'admin' || userRole === 'instructor') && (
-            <button onClick={() => { setShowModuleForm(true); setEditingModule(null); }}>Add Module</button>
+            <button className="add-module-button" onClick={() => { setShowModuleForm(true); setEditingModule(null); }}>Add Module</button>
       )}
 
       {showModuleForm && (
