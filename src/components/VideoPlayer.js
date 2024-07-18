@@ -1,6 +1,7 @@
 // VideoPlayer.js
 import React from 'react';
 import ReactPlayer from 'react-player';
+import './VideoPlayer.css'; // Import the CSS file
 
 const VideoPlayer = ({ videoUrl }) => {
   return (
@@ -17,3 +18,4 @@ const VideoPlayer = ({ videoUrl }) => {
 };
 
 export default VideoPlayer;
+
