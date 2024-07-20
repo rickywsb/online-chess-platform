@@ -118,4 +118,11 @@
     text-decoration: underline;
   }
   
-  /* Additional styling can be added here */
+  .special-rank {
+    font-family: 'Courier New', Courier, monospace; /* Choose a special font */
+    font-weight: bold;
+    color: #ff4500; /* Choose a color */
+    background-color: #ffffe0; /* Optional: background color */
+    padding: 2px 4px; /* Optional: padding */
+    border-radius: 4px; /* Optional: rounded corners */
+  }
