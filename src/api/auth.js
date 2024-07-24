@@ -12,6 +12,7 @@ export const loginUser = async (email, password) => {
     if (response.data.token) {
       localStorage.setItem('user', JSON.stringify(response.data));
       localStorage.setItem('userId', response.data.result._id); // 确保从响应中提取 _id
+      localStorage.setItem('username', response.data.result.username); // Store username
 
     }
     return response.data;
