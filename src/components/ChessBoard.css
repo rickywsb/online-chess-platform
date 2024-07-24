@@ -11,3 +11,20 @@
   font-size: 16px;
   color: #333;
 }
+
+.chessboard-wrapper {
+  width: 350px; /* Adjust the width as needed */
+  height: 350px; /* Adjust the height as needed */
+}
+
+.player-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.player-labels span {
+  font-size: 18px;
+  font-weight: bold;
+}

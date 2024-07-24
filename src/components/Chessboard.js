@@ -53,12 +53,18 @@ const ChessBoard = () => {
 
   return (
     <div className="chessboard-container">
-      <Chessboard
-        position={fen}
-        onPieceDrop={(sourceSquare, targetSquare) => onDrop({ sourceSquare, targetSquare })}
-        areArrowsAllowed={true}
-        boardOrientation="white"
-      />
+      <div className="player-labels">
+        <span>Player: {localStorage.getItem('username') || 'Anonymous'}</span>
+        <span>AI: smartchessai</span>
+      </div>
+      <div className="chessboard-wrapper">
+        <Chessboard
+          position={fen}
+          onPieceDrop={(sourceSquare, targetSquare) => onDrop({ sourceSquare, targetSquare })}
+          areArrowsAllowed={true}
+          boardOrientation="white"
+        />
+      </div>
       <p>{message}</p>
     </div>
   );
